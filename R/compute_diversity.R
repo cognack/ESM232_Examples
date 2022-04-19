@@ -11,21 +11,24 @@
 compute_diversity = function(species) {
 
   # make sure the species list is a factor
-species = as.factor(species)
+  species = as.factor(species)
 
   # use summary to get frequency counts for each unique species
-ssp = summary(species)
+  ssp = summary(species)
 
   # find the total number of individuals
-tt  = sum(ssp)
+  tt  = sum(ssp)
 
   # compute the diversity index
-diversity = sum((ssp/tt)**2)
+  diversity = sum((ssp/tt)**2)
 
   # use the the frequency count (ssp) to get the most common species
-mostfreq = names(which.max(ssp))
-
-return(list(simpson=diversity, mostcommon=mostfreq))
+  mostfreq = names(which.max(ssp))
+  
+  # min frequency
+  leastfreq = names(which.min(ssp))
+  
+  return(list(simpson_diversity=diversity, mostcommon=mostfreq, leastcommon=leastfreq))
 }
 
 
